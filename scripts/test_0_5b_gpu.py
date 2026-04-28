@@ -34,7 +34,7 @@ def main():
         max_len=600,
     )
 
-    output_path = "test_output.wav"
+    output_path = "my_output/test_0_5b_gpu_output.wav"
     sf.write(output_path, audio, model.tts_model.sample_rate)
 
     duration = len(audio) / model.tts_model.sample_rate

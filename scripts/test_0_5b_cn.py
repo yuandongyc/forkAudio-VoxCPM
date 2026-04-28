@@ -35,7 +35,7 @@ def main():
         normalize=True,
     )
 
-    output_path = "test_output_male.wav"
+    output_path = "my_output/test_0_5b_cn_output_male.wav"
     sf.write(output_path, audio, model.tts_model.sample_rate)
 
     duration = len(audio) / model.tts_model.sample_rate

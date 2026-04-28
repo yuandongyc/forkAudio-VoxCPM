@@ -66,7 +66,7 @@ def main():
         max_len=600,
     )
 
-    output_path = "test_output.wav"
+    output_path = "my_output/test_0_5b_gpu_clone_output.wav"
     sf.write(output_path, audio, model.tts_model.sample_rate)
 
     duration = len(audio) / model.tts_model.sample_rate
@@ -84,7 +84,7 @@ def main():
         max_len=600,
     )
 
-    clone_output_path = "test_clone_output.wav"
+    clone_output_path = "my_output/test_0_5b_gpu_clone_output.wav"
     sf.write(clone_output_path, clone_audio, model.tts_model.sample_rate)
 
     clone_duration = len(clone_audio) / model.tts_model.sample_rate
