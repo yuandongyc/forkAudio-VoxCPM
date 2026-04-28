@@ -6,9 +6,15 @@ import os
 os.environ["HF_HUB_DISABLE_SSL_VERIFY"] = "1"
 
 import sys
+import time
 import soundfile as sf
 import torch
 import torchaudio
+
+SEED = 42
+torch.manual_seed(SEED)
+if torch.cuda.is_available():
+    torch.cuda.manual_seed(SEED)
 
 original_torchaudio_load = torchaudio.load
 
@@ -58,24 +64,16 @@ def main():
 
     print(f"[Test] Using device: {model.tts_model.device}", file=sys.stderr)
 
-    text = "Hello, this is a test of VoxCPM text to speech synthesis."
-    print(f"[Test] Synthesizing: {text}", file=sys.stderr)
-
-    audio = model.generate(
-        text=text,
-        max_len=600,
-    )
-
-    output_path = "my_output/test_0_5b_gpu_clone_output.wav"
-    sf.write(output_path, audio, model.tts_model.sample_rate)
-
-    duration = len(audio) / model.tts_model.sample_rate
-    print(f"[Test] Saved to: {output_path}, duration: {duration:.2f}s", file=sys.stderr)
-
+    # text = "Hello, this is a test of VoxCPM text to speech synthesis."
+    text = "我是一个测试请听题目."
     prompt_wav_path = r"D:\MyProjects\c_projects\forkAudio-VoxCPM\my_voice\录音.wav"
-    prompt_text = "这是我的声音录音。"
+    prompt_text = "我是一个测试请听题目"
 
     print(f"[Test] Cloning voice from: {prompt_wav_path}", file=sys.stderr)
+
+    torch.manual_seed(SEED)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed(SEED)
 
     clone_audio = model.generate(
         text=text,
