@@ -1,0 +1,29 @@
+#项目虚拟环境安装  torch cuda
+
+
+确认了：虚拟环境中的 torch 再次变成了 2.10.0+cpu 版本。
+这说明：之前的 CUDA 版本被 重新同步覆盖 了。可能你运行了 uv sync 或其他 uv 命令，导致 lockfile 中的 CPU 版本重新覆盖了手动安装的 CUDA 版本。
+---
+解决方案（需要你手动执行）
+每次被覆盖后，重新安装 CUDA 版本：
+cd D:\MyProjects\c_projects\forkAudio-VoxCPM
+uv pip install D:\MyProjects\c_projects\forkAudio-VoxCPM\cuda-py\torch-2.5.0+cu124-cp311-cp311-win_amd64.whl
+uv pip install D:\MyProjects\c_projects\forkAudio-VoxCPM\cuda-py\torchaudio-2.5.0+cu124-cp311-cp311-win_amd64.whl
+
+安装后再运行：
+.venv\Scripts\python.exe scripts\test_0_5b.py
+.venv\Scripts\python.exe scripts\test_0_5b_gpu.py
+.venv\Scripts\python.exe scripts\test_0_5b_cn.py
+.venv\Scripts\python.exe scripts\test_0_5b_gpu_clone.py
+
+注意：之后不要运行 uv sync 或 uv pip install（除非重新指定 wheel 文件），否则会再次覆盖回 CPU 版本。
+
+
+
+
+
+uv run python D:\MyProjects\c_projects\forkAudio-VoxCPM\scripts\test_0_5b.py
+
+
+uv run python D:\MyProjects\c_projects\forkAudio-VoxCPM\scripts\test_0_5b_gpu.py
+
