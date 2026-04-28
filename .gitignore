@@ -4,3 +4,7 @@ voxcpm.egg-info
 .DS_Store
 ./pretrained_models/
 app_local.py
+/models
+/cuda-py
+/my_output
+/my_voice
